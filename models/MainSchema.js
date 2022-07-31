@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
 
-const Feedback = new mongoose.Schema({
-    Feedback: [],
-    StarRating: Number
-});
-
-
 const studentSchema = new mongoose.Schema({
     Name: {
         type: String,
@@ -18,8 +12,7 @@ const studentSchema = new mongoose.Schema({
     },
     Class: String,
     Marks: [String],
-    feedback: [Feedback]
+    feedback: [{ type: mongoose.Schema.Types.ObjectId, ref: "Feedback" }],
 });
-
 
 module.exports = mongoose.model("Student", studentSchema);
